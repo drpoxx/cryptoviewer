@@ -2,5 +2,24 @@
 
 
 {% block content %}
-    <h1>Hello World!</h1>
+
+    <div class="container"> 
+        <div class="row">
+            {% for i in api.Data %}
+                <div class="col-sm">
+                    <div class="card" style="width: 18rem;">
+                        <img src="{{ i.imageurl }}" class="card-img-top" alt="{{ i.source }}">
+                        <div class="card-body">
+                        <h5 class="card-title">{{ i.title }}</h5>
+                        <p class="card-text">{{ i.body }}</p>
+                        <a href="{{ i.url }}" class="btn btn-secondary">Read More.</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+
+    {{ api.Data }}
 {% endblock %}
