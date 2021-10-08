@@ -2,6 +2,27 @@
 
 {% block content %}
 
-    <h1>Hello World!</h1>
+    {% if notfound %}
+        <h4>Please enter the crypto currence into the 'Lookup Crypto' field to search for the latest price.</h4> <br/>
+        <h4>Please use the short-name tags.</h4><br/>
+        <h4>If you want to search for multiple crypto currency type them seperated by a comma.</h4><br/>
+    {% else %}
+        {% if crypto.Response %}
+            <h4>Sorry that symbol ({{ quote }}) doesn't exist please try again.</h4>
+        {% endif %}
+        {% for key,value in crypto.DISPLAY.items %}
+            <div class="jumbotron">
+                <h1 class="display-4">Name: {{ key }}</h1>
+                <hr class="my-4">
+                <p>
+                    <strong>Price:</strong> {{ value.GBP.PRICE }} <br/>
+                    <strong>Day High:</strong> {{ value.GBP.HIGHDAY }} <br/>
+                    <strong>Day Low:</strong> {{ value.GBP.LOWDAY }} <br/>
+                    <strong>Market Cap:</strong> {{ value.GBP.MKTCAP }} <br/>
+                </p>
+            </div>
+            <br/>     
+        {% endfor %}
+    {% endif %}
 
 {% endblock %}
